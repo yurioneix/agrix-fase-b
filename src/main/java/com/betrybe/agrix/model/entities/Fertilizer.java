@@ -21,7 +21,7 @@ public class Fertilizer {
   private String name;
   private String brand;
   private String composition;
-  @ManyToMany(mappedBy = "fertilizer")
+  @ManyToMany(mappedBy = "fertilizers")
   @JsonIgnore
   private List<Farm> farms;
 
