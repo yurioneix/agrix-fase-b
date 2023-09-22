@@ -1,6 +1,6 @@
 package com.betrybe.agrix.model.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.time.LocalDate;
 
 /**
  * Classe Crop.
@@ -20,6 +21,8 @@ public class Crop {
   private Long id;
   private String name;
   private Double plantedArea;
+  private LocalDate plantedDate;
+  private LocalDate harvestDate;
   @ManyToOne
   @JoinColumn(name = "farm_id")
   private Farm farm;
@@ -27,11 +30,20 @@ public class Crop {
   /**
    * Construtor da classe Crop que recebe id, name e plantedArea.
    */
-  public Crop(Long id, String name, double plantedArea, Farm farm) {
+  public Crop(
+      Long id,
+      String name,
+      double plantedArea,
+      Farm farm,
+      LocalDate plantedDate,
+      LocalDate harvestDate
+  ) {
     this.id = id;
     this.name = name;
     this.plantedArea = plantedArea;
     this.farm = farm;
+    this.plantedDate = plantedDate;
+    this.harvestDate = harvestDate;
   }
 
   public Crop() {}
@@ -66,6 +78,22 @@ public class Crop {
 
   public void setFarm(Farm farm) {
     this.farm = farm;
+  }
+
+  public LocalDate getPlantedDate() {
+    return plantedDate;
+  }
+
+  public void setPlantedDate(LocalDate plantedDate) {
+    this.plantedDate = plantedDate;
+  }
+
+  public LocalDate getHarvestDate() {
+    return harvestDate;
+  }
+
+  public void setHarvestDate(LocalDate harvestDate) {
+    this.harvestDate = harvestDate;
   }
 
 }

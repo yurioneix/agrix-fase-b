@@ -39,6 +39,8 @@ public class CropController {
             crop.getId(),
             crop.getName(),
             crop.getPlantedArea(),
+            crop.getPlantedDate(),
+            crop.getHarvestDate(),
             crop.getFarm().getId()
         )).collect(Collectors.toList());
   }
@@ -60,6 +62,8 @@ public class CropController {
         crop.getId(),
         crop.getName(),
         crop.getPlantedArea(),
+        crop.getPlantedDate(),
+        crop.getHarvestDate(),
         crop.getFarm().getId()
     );
 

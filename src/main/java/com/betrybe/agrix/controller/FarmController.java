@@ -67,6 +67,8 @@ public class FarmController {
             crop.getId(),
             crop.getName(),
             crop.getPlantedArea(),
+            crop.getPlantedDate(),
+            crop.getHarvestDate(),
             crop.getFarm().getId()
         ))).collect(Collectors.toList());
 
@@ -108,13 +110,16 @@ public class FarmController {
 
     Optional<Farm> optionalFarm = farmService.getFarmById(farmId);
 
-    Crop crop = new Crop();
-    crop.setName(cropCreationDto.name());
-    crop.setPlantedArea(cropCreationDto.plantedArea());
-
     if (optionalFarm.isEmpty()) {
       throw new FarmNotFoundException();
     }
+
+    Crop crop = new Crop();
+    crop.setName(cropCreationDto.name());
+    crop.setPlantedArea(cropCreationDto.plantedArea());
+    crop.setPlantedDate(cropCreationDto.plantedDate());
+    crop.setHarvestDate(cropCreationDto.harvestDate());
+
 
     crop.setFarm(optionalFarm.get());
     cropService.saveCrop(crop);
@@ -123,6 +128,8 @@ public class FarmController {
         crop.getId(),
         crop.getName(),
         crop.getPlantedArea(),
+        crop.getPlantedDate(),
+        crop.getHarvestDate(),
         crop.getFarm().getId()
     ));
   }
