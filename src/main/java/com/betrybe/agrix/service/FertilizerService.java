@@ -4,6 +4,7 @@ import com.betrybe.agrix.controller.dto.FertilizerCreationDto;
 import com.betrybe.agrix.model.entities.Fertilizer;
 import com.betrybe.agrix.model.repositories.FertilizerRepository;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,5 +41,12 @@ public class FertilizerService {
    */
   public List<Fertilizer> getAllFertilizers() {
     return this.fertilizerRepository.findAll();
+  }
+
+  /**
+   * Método que retorna um fertilizante baseado no id, caso exista.
+   */
+  public Optional<Fertilizer> getFertilizerById(Long id) {
+    return this.fertilizerRepository.findById(id);
   }
 }
