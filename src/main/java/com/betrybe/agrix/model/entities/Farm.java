@@ -32,6 +32,7 @@ public class Farm {
       joinColumns = @JoinColumn(name = "farm_id"),
       inverseJoinColumns = @JoinColumn(name = "fertilizer_id")
   )
+  @JsonIgnore
   private List<Fertilizer> fertilizers;
 
   /**
