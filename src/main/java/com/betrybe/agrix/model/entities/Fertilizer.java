@@ -81,6 +81,6 @@ public class Fertilizer {
   }
 
   public void setCrops(Crop crop) {
-    this.crops = crops;
+    this.crops.add(crop);
   }
 }

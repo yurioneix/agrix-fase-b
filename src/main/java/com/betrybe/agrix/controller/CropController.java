@@ -80,6 +80,20 @@ public class CropController {
   }
 
   /**
+   * Rota GET /crops/{cropId}/fertilizers.
+   */
+  @GetMapping("{cropId}/fertilizers")
+  public ResponseEntity<List<Fertilizer>> getFertilizersByCropId(@PathVariable Long cropId) {
+    Optional<Crop> optionalCrop = this.cropService.getCropById(cropId);
+
+    if (optionalCrop.isEmpty()) {
+      throw new CropNotFoundException();
+    }
+
+    return ResponseEntity.status(HttpStatus.OK).body(optionalCrop.get().getFertilizers());
+  }
+
+  /**
    * Método GET /crops/search/start&end.
    */
   @GetMapping("/search")

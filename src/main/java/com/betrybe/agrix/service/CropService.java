@@ -52,10 +52,10 @@ public class CropService {
    */
   public void associateCropWithFertilizer(Crop crop, Fertilizer fertilizer) {
 
-    cropRepository.save(crop);
     fertilizer.getCrops().add(crop);
-    fertilizerRepository.save(fertilizer);
     fertilizer.setCrops(crop);
+    crop.getFertilizers().add(fertilizer);
+    cropRepository.save(crop);
+    fertilizerRepository.save(fertilizer);
   }
-
 }

@@ -25,15 +25,4 @@ public class ControllerExceptionHandler {
   public ResponseEntity<String> handleNotFoundException(RuntimeException exception) {
     return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
   }
-
-
-  /**
-   * Método que lida com exceções genéricas.
-   */
-  @ExceptionHandler(Exception.class)
-  public ResponseEntity<String> handleException(Exception exception) {
-    return ResponseEntity
-        .status(HttpStatus.INTERNAL_SERVER_ERROR)
-        .body("Erro interno!");
-  }
 }

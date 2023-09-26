@@ -1,11 +1,13 @@
 package com.betrybe.agrix.model.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -29,6 +31,11 @@ public class Crop {
   @JoinColumn(name = "farm_id")
   private Farm farm;
   @ManyToMany
+  @JoinTable(
+      name = "crop_fertilizer",
+      joinColumns = @JoinColumn(name = "fertilizer_id"),
+      inverseJoinColumns = @JoinColumn(name = "crop_id")
+  )
   private List<Fertilizer> fertilizer;
 
   /**
@@ -40,7 +47,8 @@ public class Crop {
       double plantedArea,
       Farm farm,
       LocalDate plantedDate,
-      LocalDate harvestDate
+      LocalDate harvestDate,
+      List<Fertilizer> fertilizer
   ) {
     this.id = id;
     this.name = name;
@@ -48,6 +56,7 @@ public class Crop {
     this.farm = farm;
     this.plantedDate = plantedDate;
     this.harvestDate = harvestDate;
+    this.fertilizer = fertilizer;
   }
 
   public Crop() {}
@@ -100,4 +109,11 @@ public class Crop {
     this.harvestDate = harvestDate;
   }
 
+  public List<Fertilizer> getFertilizers() {
+    return fertilizer;
+  }
+
+  public void setFertilizer(Fertilizer fertilizer) {
+    this.fertilizer.add(fertilizer);
+  }
 }
