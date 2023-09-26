@@ -2,7 +2,9 @@ package com.betrybe.agrix.service;
 
 import com.betrybe.agrix.controller.dto.CropResponseDto;
 import com.betrybe.agrix.model.entities.Crop;
+import com.betrybe.agrix.model.entities.Fertilizer;
 import com.betrybe.agrix.model.repositories.CropRepository;
+import com.betrybe.agrix.model.repositories.FertilizerRepository;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -17,10 +19,15 @@ import org.springframework.stereotype.Service;
 public class CropService {
 
   private CropRepository cropRepository;
+  private FertilizerRepository fertilizerRepository;
 
   @Autowired
-  public CropService(CropRepository cropRepository) {
+  public CropService(
+      CropRepository cropRepository,
+      FertilizerRepository fertilizerRepository
+  ) {
     this.cropRepository = cropRepository;
+    this.fertilizerRepository = fertilizerRepository;
   }
 
   public Optional<Crop> getCropById(Long cropId) {
@@ -38,6 +45,17 @@ public class CropService {
   public Optional<List<Crop>> getCropByHarvestDate(LocalDate start, LocalDate end) {
     Optional<List<Crop>> crops = cropRepository.findAllCropByHarvestDateBetween(start, end);
     return crops;
+  }
+
+  /**
+   * Método que associa uma plantação com um fertilizante.
+   */
+  public void associateCropWithFertilizer(Crop crop, Fertilizer fertilizer) {
+
+    cropRepository.save(crop);
+    fertilizer.getCrops().add(crop);
+    fertilizerRepository.save(fertilizer);
+    fertilizer.setCrops(crop);
   }
 
 }

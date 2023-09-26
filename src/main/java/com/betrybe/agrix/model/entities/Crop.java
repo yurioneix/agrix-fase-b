@@ -6,9 +6,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * Classe Crop.
@@ -26,6 +28,8 @@ public class Crop {
   @ManyToOne
   @JoinColumn(name = "farm_id")
   private Farm farm;
+  @ManyToMany
+  private List<Fertilizer> fertilizer;
 
   /**
    * Construtor da classe Crop que recebe id, name e plantedArea.

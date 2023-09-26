@@ -21,9 +21,9 @@ public class Fertilizer {
   private String name;
   private String brand;
   private String composition;
-  @ManyToMany(mappedBy = "fertilizers")
+  @ManyToMany(mappedBy = "fertilizer")
   @JsonIgnore
-  private List<Farm> farms;
+  private List<Crop> crops;
 
   /**
    * Construtor da classe.
@@ -33,13 +33,13 @@ public class Fertilizer {
       String name,
       String brand,
       String composition,
-      List<Farm> farms
+      List<Crop> crops
   ) {
     this.id = id;
     this.name = name;
     this.brand = brand;
     this.composition = composition;
-    this.farms = farms;
+    this.crops = crops;
   }
 
   public Fertilizer() {}
@@ -76,11 +76,11 @@ public class Fertilizer {
     this.composition = composition;
   }
 
-  public List<Farm> getFarms() {
-    return farms;
+  public List<Crop> getCrops() {
+    return crops;
   }
 
-  public void setFarms(List<Farm> farms) {
-    this.farms = farms;
+  public void setCrops(Crop crop) {
+    this.crops = crops;
   }
 }
