@@ -270,13 +270,43 @@ A Fase A do projeto foi um sucesso! Sua equipe agora ficou responsável por expa
 
   - Exemplo de resposta da rota `/fertilizers/3` (supondo que exista um fertilizante com `id = 3`):
 
-```json
-{
-  "id": 3,
-  "name": "Adubo",
-  "brand": "Feito pelas vaquinhas",
-  "composition": "Esterco"
-}
-```
+    ```json
+      {
+        "id": 3,
+        "name": "Adubo",
+        "brand": "Feito pelas vaquinhas",
+        "composition": "Esterco"
+      }
+    ```
 
 </details> 
+
+<br>
+
+- <strong> POST `/crops/{cropId}/fertilizers/{fertilizerId}` </strong>
+
+<details>
+  <summary>Associa uma plantação com um fertilizante</summary>
+
+  - Caso não exista uma plantação com o `id` recebido, a rota deve retornar o status HTTP 404 com a mensagem `Plantação não encontrada!` no corpo da resposta.
+  - Caso não exista um fertilizante com o `id` recebido, a rota deve retornar o status HTTP 404 com a mensagem `Fertilizante não encontrado!` no corpo da resposta.
+
+  - Exemplo de resposta para a rota `/crops/1/fertilizers/2` (supondo que exista uma plantação com `id = 1` e um fertilizante com `id = 2`):
+
+```text
+Fertilizante e plantação associados com sucesso!
+```
+</details>
+
+<br>
+
+## Pastas/arquivos desenvolvidos por mim
+
+```bash
+  src/main/java/com.betrybe.agrix.controller
+  src/main/java/com.betrybe.agrix.model
+  src/main/java/com.betrybe.agrix.service
+  src/main/java/com.betrybe.agrix.util
+  src/test/java/com.betrybe.agrix.solution.PersonServiceTest
+```
+
